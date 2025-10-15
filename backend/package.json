@@ -1,0 +1,39 @@
+{
+  "name": "inc-event-backend",
+  "version": "1.0.0",
+  "description": "INC Event Management System - Backend (Express + MySQL)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+      "start": "node index.js",
+      "start:prod": "cross-env NODE_ENV=production node index.js",
+      "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.0"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "eslint": "^9.13.0",
+    "eslint-config-prettier": "^9.1.0",
+    "nodemon": "^3.1.7"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "express",
+    "mysql",
+    "event-management",
+    "backend",
+    "api"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

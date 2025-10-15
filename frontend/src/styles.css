@@ -1,0 +1,286 @@
+/* ------------------------------------------------------------
+   Modern styles for INC Event Management
+   Drop this into src/styles.css (already imported by App)
+   - Uses CSS variables for quick theme edits
+   - Responsive, accessible, and modern UI patterns
+   ------------------------------------------------------------ */
+
+/* Optional: Uncomment the next line to use Google font (add network access).
+   Or keep system font stack below for no external dependency.
+*/
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap'); */
+
+:root{
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --muted: #6b7280;
+  --text: #0f1724;
+  --primary: #0f62fe;
+  --primary-600: #0b52d6;
+  --accent: #00b894;
+  --danger: #ef4444;
+  --card-radius: 12px;
+  --shadow-sm: 0 6px 12px rgba(15,23,36,0.06);
+  --shadow-md: 0 12px 24px rgba(15,23,36,0.08);
+  --glass: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.6));
+  --max-width: 1100px;
+  --gap: 16px;
+  --focus-ring: 3px rgba(15,98,254,0.12);
+  --transition: 180ms cubic-bezier(.2,.9,.3,1);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* ... (rest of your stylesheet unchanged) ... */
+
+/* add focus-visible for keyboard users */
+.button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(15,98,254,0.18);
+}
+.canvas {
+  background: var(--surface);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  margin-top: 20px;
+  transition: box-shadow var(--transition);
+}
+.canvas:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Global reset & layout */
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  font-size:15px;
+  padding:0;
+}
+
+/* App shell */
+.header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:18px 24px;
+  background:var(--surface);
+  box-shadow:var(--shadow-sm);
+  position:sticky;
+  top:0;
+  z-index:40;
+  border-bottom:1px solid rgba(15,23,36,0.04);
+}
+.header h1{
+  margin:0;
+  font-size:20px;
+  font-weight:600;
+  letter-spacing:0.2px;
+  color:var(--text);
+}
+.header nav{ margin-left:auto; display:flex; gap:10px; align-items:center; }
+
+/* Main content area / container */
+.app main{
+  max-width:var(--max-width);
+  margin:22px auto;
+  padding:22px;
+  background:var(--surface);
+  border-radius:var(--card-radius);
+  box-shadow:var(--shadow-md);
+  transition:box-shadow var(--transition);
+}
+
+/* small card */
+.card{
+  background:var(--surface);
+  border-radius:12px;
+  padding:14px;
+  box-shadow:var(--shadow-sm);
+}
+
+/* Buttons (also applied to <a class="button"> via display:inline-block) */
+.button{
+  padding:8px 14px;
+  border-radius:10px;
+  border:0;
+  background:var(--primary);
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+  box-shadow: 0 6px 18px rgba(15,98,254,0.08);
+}
+.button:hover{ transform:translateY(-2px); background:var(--primary-600) }
+.button:active{ transform:translateY(0) }
+.button.secondary{
+  background:#475569;
+  box-shadow: 0 6px 18px rgba(71,85,105,0.06);
+}
+.button.ghost{
+  background:transparent;
+  color:var(--primary);
+  box-shadow:none;
+  border:1px solid rgba(15,98,254,0.08);
+}
+.site-logo {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+/* Utility classes */
+.muted{ color:var(--muted); font-size:13px }
+.small{ font-size:13px }
+
+/* Form elements */
+label{ display:block; font-weight:600; margin-bottom:8px; color:#111827; font-size:14px; }
+input[type="text"], input[type="number"], input[type="datetime-local"], input[type="date"], textarea, select {
+  width:100%;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid rgba(15,23,36,0.08);
+  background:linear-gradient(180deg, #fff, #fbfdff);
+  outline: none;
+  font-size:14px;
+  transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
+}
+textarea{ min-height:100px; resize:vertical; }
+input:focus, textarea:focus, select:focus{
+  box-shadow: 0 0 0 var(--focus-ring);
+  border-color:var(--primary-600);
+  transform: translateY(-1px);
+}
+
+/* Form rows */
+form > div { margin-bottom:14px; }
+
+/* File input customization - modern look */
+.file-input {
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+input[type="file"]{
+  /* make the native input small & transparent and rely on label/button for UI when possible */
+  font-size:14px;
+  padding:8px 10px;
+  border-radius:8px;
+  border:1px dashed rgba(15,23,36,0.06);
+  background: linear-gradient(180deg, #ffffff, #fcfdff);
+}
+.file-hint{ color:var(--muted); font-size:13px; margin-top:6px; }
+
+/* Table styles */
+.table{
+  width:100%;
+  border-collapse:collapse;
+  border-radius:10px;
+  overflow:hidden;
+  background:linear-gradient(180deg, #fff, #fbfdff);
+  box-shadow: 0 8px 20px rgba(15,23,36,0.04);
+}
+.table th, .table td{
+  padding:12px 14px;
+  text-align:left;
+  border-bottom:1px solid rgba(15,23,36,0.04);
+  vertical-align:middle;
+}
+.table thead th{
+  background:linear-gradient(180deg, rgba(15,98,254,0.06), rgba(15,98,254,0.02));
+  font-weight:700;
+  color:var(--muted);
+  font-size:13px;
+}
+.table tbody tr:hover{ background: rgba(15,23,36,0.02); transform:translateY(0); }
+.table tbody tr:nth-child(even){ background: rgba(15,23,36,0.01); }
+
+/* Empty table message */
+.table td[colspan]{
+  text-align:center;
+  color:var(--muted);
+  padding:28px;
+  font-style:italic;
+}
+
+/* Thumbnail images */
+img { max-width:100%; display:block; border-radius:8px; }
+.event-thumbs img{ height:80px; object-fit:cover; border-radius:8px; margin-right:8px; }
+
+/* Video */
+video{ border-radius:8px; border:1px solid rgba(0,0,0,0.06); background:#000; }
+
+/* Inline controls row */
+.controls{ display:flex; gap:8px; align-items:center; }
+
+/* Notifications */
+.notice{
+  padding:12px 16px;
+  border-radius:10px;
+  background:linear-gradient(180deg, rgba(14,118,255,0.06), rgba(14,118,255,0.02));
+  border-left:4px solid var(--primary);
+  color:var(--text);
+  margin-bottom:12px;
+}
+
+/* Smaller utility layout */
+.row{ display:flex; gap:var(--gap); align-items:center; }
+.col{ flex:1; }
+
+/* Responsive: stack for small screens */
+@media (max-width:880px){
+  .header{ padding:12px 16px }
+  .header h1{ font-size:16px }
+  .app main{ margin:12px; padding:16px }
+  .row{ flex-direction:column; align-items:stretch }
+  .header nav{ gap:8px }
+  .table th, .table td{ padding:10px; font-size:14px }
+}
+
+/* Tiny touches for accessibility */
+a.button{ cursor:pointer; }
+button:disabled, .button[disabled]{
+  opacity:0.6; cursor:not-allowed; transform:none; box-shadow:none;
+}
+
+/* Small helpers for badges and statuses */
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(0,0,0,0.06);
+  font-weight:600;
+  font-size:13px;
+}
+
+/* Form action footer (sticky on large screens) */
+.form-actions{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  margin-top:14px;
+}
+
+/* Make links inside table look neat */
+.table a{ color:var(--primary); text-decoration:none; font-weight:600; }
+.table a:hover{ text-decoration:underline; }
+
+/* Small drop-in styles to keep Hindi text readable */
+body, input, button, textarea, select { letter-spacing:0.1px; }
+
+/* End of stylesheet */
